@@ -1,44 +1,22 @@
 import TodoPomodoroApp from "./TodoPomodoroApp";
-import { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
+
+import { TodosContext, todosObject } from "./todos-context";
+import useTodos from "./hooks/useTodos";
+
 const style = (theme) => ({
   "root>*": {
     margin: theme.spacing(10),
   },
 });
 function App({ classes }) {
-  const initialState = [
-    {
-      id: 1,
-      task: "اولین کاری که باید بکنی",
-      description: "توضیحاتی که برای کار اول نوشته شده است.",
-      isComplited: false,
-      parentId: null,
-    },
-    {
-      id: 2,
-      task: "دومین کاری که باید بکنی",
-      description: "توضیحاتی که برای کار دوم نوشته‌شده‌است.",
-      isComplited: false,
-      parentId: 1,
-    },
-  ];
-  const [todos, setTodo] = useState(initialState);
-  const addTodo = (task, description) => {
-    setTodo([
-      ...todos,
-      {
-        id: 5,
-        task: task,
-        description: description,
-        isComplited: false,
-        parentId: null,
-      },
-    ]);
-  };
+  const [todos, addTodo] = useTodos(todosObject.todos);
+
   return (
     <div className={classes.root}>
-      <TodoPomodoroApp todos={todos} addTodo={addTodo} />
+      <TodosContext.Provider value={{ todos: todos, addTodo: addTodo }}>
+        <TodoPomodoroApp />
+      </TodosContext.Provider>
     </div>
   );
 }

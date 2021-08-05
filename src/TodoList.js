@@ -1,10 +1,11 @@
 import List from "@material-ui/core/List";
-
-import Paper from "@material-ui/core/Paper";
 import TodoItem from "./TodoItem";
 import { Divider } from "@material-ui/core";
 
-function TodoItems({ todos, classes }) {
+import { TodosContext } from "./todos-context";
+import { useContext } from "react";
+function TodoList() {
+  const { todos } = useContext(TodosContext);
   return (
     <List>
       {todos.map((todo) => (
@@ -17,4 +18,4 @@ function TodoItems({ todos, classes }) {
   );
 }
 
-export default TodoItems;
+export default TodoList;

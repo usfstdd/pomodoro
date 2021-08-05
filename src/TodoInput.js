@@ -5,6 +5,8 @@ import { Typography } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { useState } from "react";
 import Paper from "@material-ui/core/Paper";
+import { useContext } from "react";
+import { TodosContext } from "./todos-context";
 
 const values = {
   showTextField: "اضافه کردن وظیفه",
@@ -23,7 +25,9 @@ const style = (theme) => ({
   },
 });
 
-function TodoInput({ classes, addTodo }) {
+function TodoInput({ classes }) {
+  const { addTodo } = useContext(TodosContext);
+
   const [btn, toggleBtn] = useState(true);
 
   const [todoTitle, setTitle] = useState("");

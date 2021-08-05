@@ -1,5 +1,5 @@
 import TodoInput from "./TodoInput";
-import TodoItems from "./TodoList";
+import TodoList from "./TodoList";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/core/styles";
@@ -10,11 +10,11 @@ const styles = {
     direction: "rtl",
   },
 };
-function TodoPomodoroApp({ classes, todos, addTodo }) {
+function TodoPomodoroApp({ classes }) {
   return (
     <Container className={classes.root}>
-      <TodoItems todos={todos} />
-      <TodoInput addTodo={addTodo} />
+      <TodoList />
+      <TodoInput />
     </Container>
   );
 }
