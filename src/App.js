@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import TodoPomodoroApp from "./TodoPomodoroApp";
+import { useState } from "react";
+import { withStyles } from "@material-ui/core/styles";
+const style = (theme) => ({
+  "root>*": {
+    margin: theme.spacing(10),
+  },
+});
+function App({ classes }) {
+  const initialState = [
+    {
+      id: 1,
+      task: "اولین کاری که باید بکنی",
+      description: "توضیحاتی که برای کار اول نوشته شده است.",
+      isComplited: false,
+      parentId: null,
+    },
+    {
+      id: 2,
+      task: "دومین کاری که باید بکنی",
+      description: "توضیحاتی که برای کار دوم نوشته‌شده‌است.",
+      isComplited: false,
+      parentId: 1,
+    },
+  ];
+  const [todos, setTodo] = useState(initialState);
+  const addTodo = (task, description) => {
+    setTodo([
+      ...todos,
+      {
+        id: 5,
+        task: task,
+        description: description,
+        isComplited: false,
+        parentId: null,
+      },
+    ]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.root}>
+      <TodoPomodoroApp todos={todos} addTodo={addTodo} />
     </div>
   );
 }
 
-export default App;
+export default withStyles(style)(App);
