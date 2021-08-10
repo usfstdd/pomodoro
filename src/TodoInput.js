@@ -9,12 +9,13 @@ import { useContext } from "react";
 import { TodosContext } from "./todos-context";
 
 const values = {
-  showTextField: "اضافه کردن وظیفه",
-  addTask: "اضافه کردن به لیست",
-  cancel: "بیخیال",
-  taskTittle: "عنوان وظیفه‌ی جدید",
-  taskDiscription: "توضیخات وظیفه‌ی جدید",
+  ADD_NEW_TASK: "اضافه کردن وظیفه",
+  ADD_NEW_TASK_TO_LIST: "اضافه کردن به لیست",
+  CANCEL: "بیخیال",
+  NEW_TASK_TITLE: "عنوان وظیفه‌ی جدید",
+  NEW_TASK_DESCRIPTION: "توضیخات وظیفه‌ی جدید",
 };
+
 const style = (theme) => ({
   body: {
     marginRight: theme.spacing(4),
@@ -45,13 +46,13 @@ function TodoInput({ classes }) {
       {btn ? (
         <Button onClick={() => toggleBtn(false)}>
           <AddIcon />
-          <Typography>{values.showTextField}</Typography>
+          <Typography>{values.ADD_NEW_TASK}</Typography>
         </Button>
       ) : (
         <Paper style={{ padding: "1rem" }}>
           <TextField
             id="title"
-            label={values.taskTittle}
+            label={values.NEW_TASK_TITLE}
             variant="outlined"
             className={classes.textEaria}
             value={todoTitle}
@@ -62,7 +63,7 @@ function TodoInput({ classes }) {
             style={{ marginTop: "1.5rem" }}
             className={classes.textEaria}
             id="decription"
-            label={values.taskDiscription}
+            label={values.NEW_TASK_DESCRIPTION}
             multiline
             rows={4}
             variant="outlined"
@@ -76,9 +77,9 @@ function TodoInput({ classes }) {
               setDescription("");
             }}
           >
-            {values.addTask}
+            {values.ADD_NEW_TASK_TO_LIST}
           </Button>
-          <Button onClick={() => toggleBtn(true)}>{values.cancel}</Button>
+          <Button onClick={() => toggleBtn(true)}>{values.CANCEL}</Button>
         </Paper>
       )}
     </div>
